@@ -1,11 +1,20 @@
+'''
+This file scrapes the stolostron organization for all yaml files
+ORG is the github.com org that we are scraping
+'''
+
 import requests
 import base64
 
 
+ORG="stolostron"
+
 # gets the full response object. All yaml files in stolostron
-def get_yaml():
+# TODO: get the paginated version of the queries. Pretty sure you have to do pages
+#       totol count reads 5k but items list reads 30 
+def get_yamls():
 	headers = {'Accept': 'application/vnd.github.v3+json'}
-	url = 'https://api.github.com/search/code?q=language:yaml+org:stolostron'
+	url = 'https://api.github.com/search/code?q=language:yaml+org:'+ORG
 	r = requests.get(url, headers=headers)
 	res = r.json()
 	print len(res)
@@ -30,7 +39,7 @@ def get_raw_yaml(yaml):
 
 
 def main():
-	yamls = get_yaml()
+	yamls = get_yamls()
 	print len(yamls['items'])
 	
 	first_yaml = yamls['items'][0]
