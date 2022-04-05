@@ -1,3 +1,9 @@
 search-indexer
 search-collector
 search-aggregator
+search-api
+search-ui
+search-indexer
+search-v2-operator
+search-v2-api
+redisgraph-tls
